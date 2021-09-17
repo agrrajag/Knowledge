@@ -70,10 +70,10 @@ The Relative ID Master assigns blocks of Security Identifiers (SID) to different
 #### Infrastructure Master
 The Infrastructure Master role translates Globally Unique Identifiers (GUID), SIDs, and Distinguished Names (DN) between domains. If you have multiple domains in your forest, the Infrastructure Master is the Babelfish that lives between them. If the Infrastructure Master doesn’t do its job correctly you will see SIDs in place of resolved names in your Access Control Lists (ACL).
 
+![ ](https://blogvaronis2.wpengine.com/wp-content/uploads/2018/04/fsmo-roles-960x768.png)
+
 ### FSMO Placement
 Multiple best-practice guides recommend leaving all FSMO roles on the first domain controller in the forest of a single-domain forest.
-
-
 
 #### RID, PDC, IM
 * Open Active Directory Users and Computers
