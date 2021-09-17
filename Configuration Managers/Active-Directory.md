@@ -71,7 +71,6 @@ Microsoft Windows Domains
 * Select next
 * Select Proceed with Removal
 
-
 ## FSMO Roles
 ### Roles and Descriptions
 Credit to [https://www.varonis.com/blog/fsmo-roles/](https://www.varonis.com/blog/fsmo-roles/) 
@@ -124,3 +123,16 @@ Multiple best-practice guides recommend leaving all FSMO roles on the first doma
 * Right click Active Directory Domains and Trusts
 * Select Operations Master
 * Select Change to apply the master to the new DC
+
+## Troubleshooting
+
+### DCDiag - userAccountControl 0x82020
+This occurs when the server that you are promoting to a DC is already joined to the domain
+
+* Open ADSI Edit
+* Navigate to DC=example.com/OU=Domain Controllers and right click the DC that is showing the error
+* Select Properties
+* Scroll down to and double click the userAccountControl field
+* Change from 532512 to 532480
+* Select OK
+* Select OK
