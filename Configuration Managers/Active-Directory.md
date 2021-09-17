@@ -8,7 +8,7 @@ parent: Configuration Managers
 # Active Directory
 {: .no_toc }
 
-Microsoft Domains
+Microsoft Windows Domains
 {: .fs-6 .fw-300 }
 
 ## Table of contents
@@ -22,6 +22,7 @@ Microsoft Domains
 ## FSMO Roles
 ### Roles and Descriptions
 Taken from https://www.varonis.com/blog/fsmo-roles/ 
+
 #### Schema Master
 The Schema Master role manages the read-write copy of your Active Directory schema. The AD Schema defines all the attributes – things like employee ID, phone number, email address, and login name – that you can apply to an object in your AD database.
 
@@ -36,3 +37,37 @@ The Relative ID Master assigns blocks of Security Identifiers (SID) to different
 
 #### Infrastructure Master
 The Infrastructure Master role translates Globally Unique Identifiers (GUID), SIDs, and Distinguished Names (DN) between domains. If you have multiple domains in your forest, the Infrastructure Master is the Babelfish that lives between them. If the Infrastructure Master doesn’t do its job correctly you will see SIDs in place of resolved names in your Access Control Lists (ACL).
+
+### FSMO Placement
+Multiple best-practice guides recommend leaving all FSMO roles on the first domain controller in the forest of a single-domain forest.
+
+
+
+#### RID, PDC, IM
+* Open Active Directory Users and Computers
+* Right click your domain
+* Select Change Domain Controller
+* Select the domain controller you would like to move roles to
+* Select OK
+* That window will close
+* Right click your domain
+* Select Operations Masters
+* Assign the permissions for RID, PDC, and IM to your desired DC
+* If you change the PDC, you will need to follow the steps for updating time hierarchy as well
+
+#### Schema Master
+* Open CMD as an administrator
+* Run mmc.exe
+* Add the Active Directory Schema module
+* Right click the forest and change domain controllers to the one you want to move the operation master to
+* Right click the forest and select Operations Masters
+* Select Change to apply the schema master to that domain controller
+
+#### Domain Naming Master
+* Open Active Directory Domains and Trusts
+* Right click Active Directory Domains and Trusts
+* Select Change Domain Controller
+* Change the domain controller to the one you want to move the role to
+* Right click Active Directory Domains and Trusts
+* Select Operations Master
+* Select Change to apply the master to the new DC
