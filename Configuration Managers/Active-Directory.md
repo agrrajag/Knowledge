@@ -53,7 +53,7 @@ Multiple best-practice guides recommend leaving all FSMO roles on the first doma
 * Right click your domain
 * Select Operations Masters
 * Assign the permissions for RID, PDC, and IM to your desired DC
-* If you change the PDC, you will need to follow the steps for updating time hierarchy as well
+* If you change the PDC, you will need to update time hierarchy as well
 
 #### Schema Master
 * Open CMD as an administrator
