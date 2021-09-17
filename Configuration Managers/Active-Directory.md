@@ -21,7 +21,7 @@ Microsoft Windows Domains
 
 # FSMO Roles
 ## Roles and Descriptions
-Taken from https://www.varonis.com/blog/fsmo-roles/ 
+Taken from [https://www.varonis.com/blog/fsmo-roles/](https://www.varonis.com/blog/fsmo-roles/) 
 
 ### Schema Master
 The Schema Master role manages the read-write copy of your Active Directory schema. The AD Schema defines all the attributes – things like employee ID, phone number, email address, and login name – that you can apply to an object in your AD database.
