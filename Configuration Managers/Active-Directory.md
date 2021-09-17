@@ -50,6 +50,27 @@ Microsoft Windows Domains
 * Select Next
 * Select Install
 
+## Demoting a Domain Controller
+
+[Microsoft Guide on Demoting a Domain Controller](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/demoting-domain-controllers-and-domains--level-200-) 
+
+* Ensure services are not needing that domain controller
+* Log in to the DC
+* Open Server Manager
+* Select manage
+* Select Remove Roles and Features
+* Select Next
+* Select Next
+* Deselect Active Directory Domain Services (and only that checkbox, a new dialog will open)
+* Deselect Remove Management Tools
+* Select Remove Features
+* A new validation dialog will open suggesting you can demote the domain controller
+* Select the words demote this domain controller
+* Do not select force unless there is no network connection
+  * If you do force, you will need to immediately [clean up metadata](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup)
+* Select next
+* Select Proceed with Removal
+
 
 ## FSMO Roles
 ### Roles and Descriptions
