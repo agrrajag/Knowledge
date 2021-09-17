@@ -18,32 +18,64 @@ Microsoft Windows Domains
 {:toc}
 
 ---
+# Domain Controllers
 
-# FSMO Roles
-## Roles and Descriptions
+## Adding a Domain Controller to an Existing Domain
+
+### Install Active Directory services
+* Open Server Manager
+* Select Manage
+* Select Add Roles and Features
+* Select Next, Next, Next
+* Select Active Directory Domain Services
+* Select Add Features on the box that pops up
+* Select Next
+* Select Next
+* Continue through the deployment process, promotion will be after service installation
+
+### Promote to Domain Controller
+
+* Select Add a domain controller to an existing domain
+* Next to domain, select Select…
+* Select your domain
+* Select Change next to credentials and add a domain admin
+* Select next
+* Select the desired site name
+* Generate a strong password for DSRM. This is unique to the DC
+* Select Next
+* Select Next past DNS options
+* Select Next on replications
+* Select the desired paths for NTDS/SYSVOL
+* Select Next
+* Select Next
+* Select Install
+
+
+## FSMO Roles
+### Roles and Descriptions
 Taken from [https://www.varonis.com/blog/fsmo-roles/](https://www.varonis.com/blog/fsmo-roles/) 
 
-### Schema Master
+#### Schema Master
 The Schema Master role manages the read-write copy of your Active Directory schema. The AD Schema defines all the attributes – things like employee ID, phone number, email address, and login name – that you can apply to an object in your AD database.
 
-### Domain Naming Master
+#### Domain Naming Master
 The Domain Naming Master makes sure that you don’t create a second domain in the same forest with the same name as another. It is the master of your domain names. Creating new domains isn’t something that happens often, so of all the roles, this one is most likely to live on the same DC with another role.
 
-### RID Master
+#### RID Master
 The Relative ID Master assigns blocks of Security Identifiers (SID) to different DCs they can use for newly created objects. Each object in AD has an SID, and the last few digits of the SID are the Relative portion. In order to keep multiple objects from having the same SID, the RID Master grants each DC the privilege of assigning certain SIDs.
 
-### PDC Emulator
+#### PDC Emulator
  The DC with the Primary Domain Controller Emulator role is the authoritative DC in the domain. The PDC Emulator responds to authentication requests, changes passwords, and manages Group Policy Objects. And the PDC Emulator tells everyone else what time it is! It’s good to be the PDC.
 
-### Infrastructure Master
+#### Infrastructure Master
 The Infrastructure Master role translates Globally Unique Identifiers (GUID), SIDs, and Distinguished Names (DN) between domains. If you have multiple domains in your forest, the Infrastructure Master is the Babelfish that lives between them. If the Infrastructure Master doesn’t do its job correctly you will see SIDs in place of resolved names in your Access Control Lists (ACL).
 
-## FSMO Placement
+### FSMO Placement
 Multiple best-practice guides recommend leaving all FSMO roles on the first domain controller in the forest of a single-domain forest.
 
 
 
-### RID, PDC, IM
+#### RID, PDC, IM
 * Open Active Directory Users and Computers
 * Right click your domain
 * Select Change Domain Controller
@@ -55,7 +87,7 @@ Multiple best-practice guides recommend leaving all FSMO roles on the first doma
 * Assign the permissions for RID, PDC, and IM to your desired DC
 * If you change the PDC, you will need to update time hierarchy as well
 
-### Schema Master
+#### Schema Master
 * Open CMD as an administrator
 * Run mmc.exe
 * Add the Active Directory Schema module
@@ -63,7 +95,7 @@ Multiple best-practice guides recommend leaving all FSMO roles on the first doma
 * Right click the forest and select Operations Masters
 * Select Change to apply the schema master to that domain controller
 
-### Domain Naming Master
+#### Domain Naming Master
 * Open Active Directory Domains and Trusts
 * Right click Active Directory Domains and Trusts
 * Select Change Domain Controller
